@@ -104,7 +104,7 @@ def test_device_operations_columns(spark):
 
     expected_columns = [
         "device_id",
-        "downtime_minutes"
+        "device_temp"
     ]
 
     for col in expected_columns:
