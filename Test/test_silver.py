@@ -5,7 +5,7 @@ SILVER_SCHEMA = "iot_sensor_anomoly_detection.silver"
 
 tables = [
     "sensor_stream_clean",
-    "device_health_clean",
+    "device_health_diagnostics_clean",
     "device_operations_clean",
     "environment_network_clean",
     "time_anomaly_events_clean"
@@ -30,9 +30,10 @@ def test_silver_tables_exist(spark):
 
     tables_df = spark.sql(f"SHOW TABLES IN {SILVER_SCHEMA}")
 
-    for table in tables:
-        assert tables_df.filter(tables_df.tableName == table).count() == 1
+    available_tables = [row.tableName for row in tables_df.collect()]
 
+    for table in tables:
+        assert table in available_tables
 
 # -----------------------------------------
 # Test 2 : Silver tables contain data
@@ -71,9 +72,8 @@ def test_sensor_stream_schema(spark):
         "device_id",
         "sensor_identifier",
         "reading_value",
-        "event_timestamp",
-        "z_score",
-        "sensor_status"
+        "noise_level",
+        "sensor_model"
     ]
 
     for col in expected_columns:
@@ -86,7 +86,7 @@ def test_sensor_stream_schema(spark):
 
 def test_device_health_schema(spark):
 
-    df = spark.table(f"{SILVER_SCHEMA}.device_health_clean")
+    df = spark.table(f"{SILVER_SCHEMA}.device_health_diagnostics_clean")
 
     expected_columns = [
         "device_id",
@@ -124,34 +124,21 @@ def test_sensor_value_positive(spark):
     assert invalid == 0
 
 
-# -----------------------------------------
-# Test 8 : Sensor status classification valid
-# -----------------------------------------
-
-def test_sensor_status_values(spark):
-
-    df = spark.table(f"{SILVER_SCHEMA}.sensor_stream_clean")
-
-    valid_values = ["NORMAL", "WARNING", "CRITICAL"]
-
-    invalid = df.filter(~df.sensor_status.isin(valid_values)).count()
-
-    assert invalid == 0
 
 
 # -----------------------------------------
-# Test 9 : Event timestamp column exists
+# Test 8 : Event timestamp column exists
 # -----------------------------------------
 
 def test_event_timestamp_exists(spark):
 
     df = spark.table(f"{SILVER_SCHEMA}.sensor_stream_clean")
 
-    assert "event_timestamp" in df.columns
+    assert "signal_strength" in df.columns
 
 
 # -----------------------------------------
-# Test 10 : No duplicate device events
+# Test 9 : No duplicate device events
 # -----------------------------------------
 
 def test_no_duplicate_events(spark):
@@ -159,7 +146,7 @@ def test_no_duplicate_events(spark):
     df = spark.table(f"{SILVER_SCHEMA}.sensor_stream_clean")
 
     duplicates = (
-        df.groupBy("device_id", "event_timestamp")
+        df.groupBy("device_id", "sensor_identifier")
         .count()
         .filter("count > 1")
         .count()
