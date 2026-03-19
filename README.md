@@ -146,7 +146,7 @@ s3://iot-sensor-target/YYYY/MM/DD/NN/
 | dim_time |
 | fact_device_monitoring |
 
----
+
 
 ---
 ## Data Models
@@ -195,12 +195,10 @@ Star Schema
 
 
 
----
-
 
 ---
 
-##Data Build Tools(DBT)
+## Data Build Tools(DBT)
 
 - Integrated dbt in the Gold layer to perform advanced transformations on IoT sensor data.
   
