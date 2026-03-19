@@ -186,15 +186,14 @@ Star Schema
 
 - Anomoly detection Pattern By Time
 
-![Total Critical Alerts](https://github.com/user-attachments/assets/a45ca803-e679-4cff-9d36-789be9760cdf)
 
-![Anomoly Detection Pattern By Time](https://github.com/user-attachments/assets/6e4e758a-ff42-49bc-8074-f3a5e789cb3d)
+![Low Level Insights Dashboard](https://github.com/user-attachments/assets/1db40761-9d86-48da-907e-fac4aa637efd)
 
-![Sensor Status Distribution](https://github.com/user-attachments/assets/ea1f5d63-e5d9-47e0-b3e5-2f06dcf55e1f)
+![Medium Level Insights DashBoards](https://github.com/user-attachments/assets/c3a92072-e0c1-4d2f-844c-f9285fbed610)
 
-![Critical Device Monitoring](https://github.com/user-attachments/assets/a82d2dbe-8c69-4830-9dc6-ec75cb283786)
+![Advance Insights DashBoard](https://github.com/user-attachments/assets/74baefad-6b6b-4160-b137-4fb16a3f3d16)
 
-![Sensor Reading Trend](https://github.com/user-attachments/assets/97979f63-8d54-495b-8052-7e4986995586)
+
 
 ---
 
