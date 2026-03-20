@@ -152,7 +152,10 @@ s3://iot-sensor-target/YYYY/MM/DD/NN/
 ## Data Models
 
 Star Schema
-![star schema](https://github.com/user-attachments/assets/19506dd0-fd22-467c-90e5-dec112b62f8d)
+
+![star schema](https://github.com/user-attachments/assets/da9d8eff-8f6b-4958-94a8-f28606f93d28)
+
+
 ---
 
 ## 📊 Business Insights
